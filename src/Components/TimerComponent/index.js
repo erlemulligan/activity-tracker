@@ -8,12 +8,12 @@ class TimerComponent extends Component {
     this.state = {date: new Date()};
   }
 
-  componentDidMount() {
-    this.timerID = setInterval(
-      () => this.tick(),
-      1000
-    );
-  }
+  // componentDidMount() {
+  //   this.timerID = setInterval(
+  //     () => this.tick(),
+  //     1000
+  //   );
+  // }
 
   componentWillUnmount() {
     clearInterval(this.timerID);
@@ -23,6 +23,13 @@ class TimerComponent extends Component {
     this.setState({
       date: new Date()
     });
+  }
+
+  startTimer() {
+    this.timerID = setInterval(
+      () => this.tick(),
+      1000
+    );
   }
 
   render() {
