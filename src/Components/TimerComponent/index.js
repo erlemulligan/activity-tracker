@@ -7,7 +7,9 @@ class TimerComponent extends Component {
     super(props)
     console.log(this.props)
     this.state = {
-      date: new Date(),
+      currentDate: new Date(),
+      startDate: '',
+      endDate: '',
       secondsElapsed: 0,
     }
 
@@ -18,9 +20,27 @@ class TimerComponent extends Component {
     this.getHours = this.getHours.bind(this)
   }
 
+  componentDidMount() {
+    this.clockIncrementer = setInterval(
+      () => this.setState({currentDate: new Date()}),
+      1000
+    );
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.clockIncrementer);
+  }
+
   handleStart() {
+    this.setState({
+      startDate: new Date(),
+      endDate: 'work currently in progress...'
+    })
+
     this.timeIncrementer = setInterval(() => {
-      this.setState({secondsElapsed: this.state.secondsElapsed + 1})
+      this.setState({
+        secondsElapsed: this.state.secondsElapsed + 1,
+      })
 
       if (this.state.secondsElapsed % this.props.breakReminderInSeconds === 0) {
         alert('Do you need to take a break?')
@@ -30,7 +50,10 @@ class TimerComponent extends Component {
 
   handleStop() {
     clearInterval(this.timeIncrementer)
-    this.setState({secondsElapsed: 0})
+    this.setState({
+      secondsElapsed: 0,
+      endDate: new Date(),
+    })
   }
 
   getHours() {
@@ -48,9 +71,12 @@ class TimerComponent extends Component {
   render() {
     return (
       <div className="TimerComponentContainer">
-        <h1>{`${this.getHours()}:${this.getMinutes()}:${this.getSeconds()}`}</h1>
+        <h3>{`current date/time: ${this.state.currentDate}`}</h3>
+        <h1>{`task timer: ${this.getHours()}:${this.getMinutes()}:${this.getSeconds()}`}</h1>
         <ButtonComponent buttonText="Start Working" onClick={this.handleStart}/>
         <ButtonComponent buttonText="Stop Working" onClick={this.handleStop} />
+        <h3>{`start task date/time: ${this.state.startDate}`}</h3>
+        <h3>{`end task date/time: ${this.state.endDate}`}</h3>
       </div>
     );
   }
