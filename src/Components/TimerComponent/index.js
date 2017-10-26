@@ -6,38 +6,25 @@ class TimerComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {date: new Date()};
+
+    this.handleStart = this.handleStart.bind(this);
+    this.handleStop = this.handleStop.bind(this);
   }
 
-  // componentDidMount() {
-  //   this.timerID = setInterval(
-  //     () => this.tick(),
-  //     1000
-  //   );
-  // }
-
-  componentWillUnmount() {
-    clearInterval(this.timerID);
+  handleStart() {
+    alert('starting...')
   }
 
-  tick() {
-    this.setState({
-      date: new Date()
-    });
-  }
-
-  startTimer() {
-    this.timerID = setInterval(
-      () => this.tick(),
-      1000
-    );
+  handleStop() {
+    alert('stopping...')
   }
 
   render() {
     return (
       <div className="TimerComponentContainer">
-        <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
-        <ButtonComponent buttonText="Start" />
-        <ButtonComponent buttonText="Stop" />
+        <h1>0:00</h1>
+        <ButtonComponent buttonText="Start" onClick={this.handleStart}/>
+        <ButtonComponent buttonText="Stop" onClick={this.handleStop} />
       </div>
     );
   }

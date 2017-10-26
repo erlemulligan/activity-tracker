@@ -3,9 +3,9 @@ import './ButtonComponent.css';
 
 const ButtonComponent = (props) => {
   return (
-    <span className="ButtonComponentContainer">
+    <button className="ButtonComponentContainer" onClick={props.onClick}>
       {props.buttonText}
-    </span>
+    </button>
   );
 }
 
