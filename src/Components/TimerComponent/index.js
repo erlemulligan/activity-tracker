@@ -49,8 +49,8 @@ class TimerComponent extends Component {
     return (
       <div className="TimerComponentContainer">
         <h1>{`${this.getHours()}:${this.getMinutes()}:${this.getSeconds()}`}</h1>
-        <ButtonComponent buttonText="Start" onClick={this.handleStart}/>
-        <ButtonComponent buttonText="Stop" onClick={this.handleStop} />
+        <ButtonComponent buttonText="Start Working" onClick={this.handleStart}/>
+        <ButtonComponent buttonText="Stop Working" onClick={this.handleStop} />
       </div>
     );
   }
