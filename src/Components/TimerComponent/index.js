@@ -23,7 +23,7 @@ class TimerComponent extends Component {
       this.setState({secondsElapsed: this.state.secondsElapsed + 1})
 
       if (this.state.secondsElapsed === this.props.breakReminderInSeconds) {
-        alert('please take a break')
+        alert('Do you need to take a break?')
       }
     }, 1000)
   }
