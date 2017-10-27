@@ -1,16 +1,18 @@
-import React, { Component } from 'react';
-import ButtonComponent from '../ButtonComponent';
+import React, { Component } from 'react'
+import ButtonComponent from '../ButtonComponent'
+import TaskListItemComponent from '../TaskListItemComponent'
 import './TimerComponent.css';
 
 class TimerComponent extends Component {
   constructor(props) {
     super(props)
-    console.log(this.props)
+
     this.state = {
       currentDate: new Date(),
       startDate: '',
       endDate: '',
       secondsElapsed: 0,
+      taskList: [],
     }
 
     this.handleStart = this.handleStart.bind(this)
@@ -18,6 +20,7 @@ class TimerComponent extends Component {
     this.getSeconds = this.getSeconds.bind(this)
     this.getMinutes = this.getMinutes.bind(this)
     this.getHours = this.getHours.bind(this)
+    this.displayTaskList = this.displayTaskList.bind(this)
   }
 
   componentDidMount() {
@@ -34,7 +37,7 @@ class TimerComponent extends Component {
   handleStart() {
     this.setState({
       startDate: new Date(),
-      endDate: 'work currently in progress...'
+      endDate: 'work currently in progress...',
     })
 
     this.timeIncrementer = setInterval(() => {
@@ -50,10 +53,19 @@ class TimerComponent extends Component {
 
   handleStop() {
     clearInterval(this.timeIncrementer)
+
+    const stopEndDate = new Date()
+    let tempTaskArray = this.state.taskList
+
+    tempTaskArray.push({start: this.state.startDate.toString(), stop: stopEndDate.toString()})
+
     this.setState({
       secondsElapsed: 0,
-      endDate: new Date(),
+      endDate: stopEndDate,
+      taskList: tempTaskArray,
     })
+
+    console.log(this.state.taskList)
   }
 
   getHours() {
@@ -68,6 +80,14 @@ class TimerComponent extends Component {
     return ('0' + this.state.secondsElapsed % 60).slice(-2)
   }
 
+  displayTaskList() {
+    const taskList = this.state.taskList.map((task) => {
+      return <TaskListItemComponent key={task.start} startTime={task.start} stopTime={task.stop} />
+    })
+
+    return (<ul>{taskList}</ul>)
+  }
+
   render() {
     return (
       <div className="TimerComponentContainer">
@@ -77,13 +97,14 @@ class TimerComponent extends Component {
         <ButtonComponent buttonText="Stop Working" onClick={this.handleStop} />
         <h3>{`start task date/time: ${this.state.startDate}`}</h3>
         <h3>{`end task date/time: ${this.state.endDate}`}</h3>
+        {this.displayTaskList()}
       </div>
     );
   }
 }
 
 TimerComponent.defaultProps = {
-  breakReminderInSeconds: 5,
+  breakReminderInSeconds: 30,
 }
 
-export default TimerComponent;
+export default TimerComponent
