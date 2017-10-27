@@ -6,7 +6,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <TimerComponent breakReminderInSeconds={12} />
+        <TimerComponent breakReminderInSeconds={6000} />
       </div>
     );
   }

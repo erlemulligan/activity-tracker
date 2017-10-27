@@ -3,7 +3,7 @@ import './TaskListItemComponent.css';
 
 const TaskListItemComponent = (props) => {
   return (
-    <li className="TaskListItemComponentContainer">username: {props.userName} userid: {props.userIdNumber} start: {props.startTime} stop: {props.stopTime}</li>
+    <li className="TaskListItemComponentContainer">username: {props.userName} userid: {props.userIdNumber} start: {props.startTime} stop: {props.stopTime} category: {props.taskCategory}</li>
   );
 }
 
