@@ -156,9 +156,12 @@ class TimerComponent extends Component {
           <select className="input-group-field" onChange={this.handleTaskCategoryChange}>
             <option value="Uncategorized">Uncategorized</option>
             <option value="Development">Development</option>
+            <option value="Documentation">Documentation</option>
             <option value="Communication">Communication</option>
             <option value="Meeting">Meeting</option>
+            <option value="R&D work">R&D work</option>
             <option value="Break">Break</option>
+            <option value="Uncounted Time">Uncounted Time</option>
           </select>
         </div>
 
