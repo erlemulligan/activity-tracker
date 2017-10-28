@@ -5,3 +5,7 @@
 .topClock {
   text-align: right;
 }
+
+.hoverScrollTable {
+  width: 100% !important;
+}

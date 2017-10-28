@@ -91,7 +91,6 @@ class TimerComponent extends Component {
       taskList: tempTaskArray,
     })
 
-    console.log(this.state.taskList)
   }
 
   getHours() {
@@ -116,7 +115,7 @@ class TimerComponent extends Component {
 
     return (
             <div className="table-scroll">
-              <table className="hover">
+              <table className="hover hoverScrollTable">
                 <thead>
                   <tr>
                     <th width="200">User Name</th>
