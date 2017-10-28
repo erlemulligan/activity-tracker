@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ButtonComponent from '../ButtonComponent'
+import FormattedDateComponent from '../FormattedDateComponent'
 import TaskListItemComponent from '../TaskListItemComponent'
 import '../../../node_modules/foundation-sites/dist/css/foundation.css'
 import './TimerComponent.css';
@@ -82,7 +83,7 @@ class TimerComponent extends Component {
     const stopEndDate = new Date()
     let tempTaskArray = this.state.taskList
 
-    tempTaskArray.push({start: this.state.startDate.toString(), stop: stopEndDate.toString(), userName: this.state.userName, userIdNumber: this.state.userIdNumber, taskCategory: this.state.taskCategory})
+    tempTaskArray.push({start: this.state.startDate, stop: stopEndDate, userName: this.state.userName, userIdNumber: this.state.userIdNumber, taskCategory: this.state.taskCategory})
 
     this.setState({
       secondsElapsed: 0,
@@ -114,26 +115,32 @@ class TimerComponent extends Component {
     })
 
     return (
-            <table className="hover">
-              <thead>
-                <tr>
-                  <th width="200">User Name</th>
-                  <th width="200">User ID#</th>
-                  <th>Start Time</th>
-                  <th>End Time</th>
-                  <th>Category</th>
-                </tr>
-              </thead>
-              <tbody>
-                {taskListDisplay}
-              </tbody>
-            </table>
+            <div className="table-scroll">
+              <table className="hover">
+                <thead>
+                  <tr>
+                    <th width="200">User Name</th>
+                    <th width="200">User ID#</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Category</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {taskListDisplay}
+                </tbody>
+              </table>
+            </div>
            )
   }
 
   render() {
     return (
       <div className="TimerComponentContainer grid-x grid-padding-x">
+
+        <div className="cell topClock">
+          <FormattedDateComponent date={this.state.currentDate}/>
+        </div>
 
         <div className="input-group cell small-12 medium-4">
           <span className="input-group-label">User Name</span>
@@ -162,11 +169,18 @@ class TimerComponent extends Component {
         </div>
 
         <div className="cell">
-          <h3>{`current date/time: ${this.state.currentDate}`}</h3>
           <h1>{`task timer: ${this.getHours()}:${this.getMinutes()}:${this.getSeconds()}`}</h1>
 
-          <h3>{`start task date/time: ${this.state.startDate}`}</h3>
-          <h3>{`end task date/time: ${this.state.endDate}`}</h3>
+          <h3>start time</h3>
+          <FormattedDateComponent date={this.state.startDate}/>
+          <h3>end time</h3>
+          {this.state.endDate.getMonth &&
+            <FormattedDateComponent date={this.state.endDate}/>
+          }
+          {!this.state.endDate.getMonth &&
+            <div>{this.state.endDate}</div>
+          }
+
           {this.displayTaskList()}
         </div>
       </div>

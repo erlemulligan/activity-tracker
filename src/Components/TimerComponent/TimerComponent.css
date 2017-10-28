@@ -1,3 +1,7 @@
 .TimerComponentContainer {
   background: transparent;
 }
+
+.topClock {
+  text-align: right;
+}
