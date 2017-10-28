@@ -7,7 +7,7 @@ class App extends Component {
   render() {
     return (
       <div className="App grid-container">
-        <TimerComponent breakReminderInSeconds={6000} />
+        <TimerComponent breakReminderInSeconds={30} />
       </div>
     );
   }
