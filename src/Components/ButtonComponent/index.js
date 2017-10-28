@@ -1,9 +1,10 @@
-import React from 'react';
-import './ButtonComponent.css';
+import React from 'react'
+import '../../../node_modules/foundation-sites/dist/css/foundation.css'
+import './ButtonComponent.css'
 
 const ButtonComponent = (props) => {
   return (
-    <button className="ButtonComponentContainer" onClick={props.onClick}>
+    <button className="button" onClick={props.onClick}>
       {props.buttonText}
     </button>
   );

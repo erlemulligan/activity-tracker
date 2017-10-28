@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ButtonComponent from '../ButtonComponent'
 import TaskListItemComponent from '../TaskListItemComponent'
+import '../../../node_modules/foundation-sites/dist/css/foundation.css'
 import './TimerComponent.css';
 
 class TimerComponent extends Component {
@@ -118,16 +119,22 @@ class TimerComponent extends Component {
   render() {
     return (
       <div className="TimerComponentContainer">
-        <form>
-          <label>name:</label>
-          <input type="text" value={this.state.userName} onChange={this.handleUserNameChange}/>
-          <label>user id #:</label>
-          <input type="text" value={this.state.userIdNumber} onChange={this.handleUserIdNumberChange}/>
-          <select onChange={this.handleTaskCategoryChange}>
-            <option value="cat 1">cat 1</option>
-            <option value="cat 2">cat 2</option>
+        <div class="input-group">
+          <span class="input-group-label">Name</span>
+          <input className="input-group-field" type="text" value={this.state.userName} onChange={this.handleUserNameChange}/>
+
+          <span class="input-group-label">User ID#</span>
+          <input className="input-group-field" type="text" value={this.state.userIdNumber} onChange={this.handleUserIdNumberChange}/>
+
+          <span class="input-group-label">Category</span>
+          <select className="input-group-field" onChange={this.handleTaskCategoryChange}>
+            <option value="Unaccounted Time">Unaccounted</option>
+            <option value="Development">Development</option>
+            <option value="Communication">Communication</option>
+            <option value="Meeting">Meeting</option>
+            <option value="Break">Break</option>
           </select>
-        </form>
+        </div>
         <h3>{`current date/time: ${this.state.currentDate}`}</h3>
         <h1>{`task timer: ${this.getHours()}:${this.getMinutes()}:${this.getSeconds()}`}</h1>
         <ButtonComponent buttonText="Start Working" onClick={this.handleStart}/>

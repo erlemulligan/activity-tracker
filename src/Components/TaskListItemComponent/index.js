@@ -1,5 +1,6 @@
-import React from 'react';
-import './TaskListItemComponent.css';
+import React from 'react'
+import '../../../node_modules/foundation-sites/dist/css/foundation.css'
+import './TaskListItemComponent.css'
 
 const TaskListItemComponent = (props) => {
   return (
