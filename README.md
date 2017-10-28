@@ -1,6 +1,6 @@
 # Activity tracker concept project.
 
-This project is the front-end basis of a activity or task time tracker.
+This project is the front-end basis of an activity or task time tracker.
 
 ## To do:
 1. Form validation
