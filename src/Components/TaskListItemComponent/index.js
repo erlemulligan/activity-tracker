@@ -4,7 +4,13 @@ import './TaskListItemComponent.css'
 
 const TaskListItemComponent = (props) => {
   return (
-    <li className="TaskListItemComponentContainer">username: {props.userName} userid: {props.userIdNumber} start: {props.startTime} stop: {props.stopTime} category: {props.taskCategory}</li>
+    <tr className="TaskListItemComponentContainer">
+      <td>{props.userName}</td>
+      <td>{props.userIdNumber}</td>
+      <td>{props.startTime}</td>
+      <td>{props.stopTime}</td>
+      <td>{props.taskCategory}</td>
+    </tr>
   );
 }
 

@@ -15,7 +15,7 @@ class TimerComponent extends Component {
       secondsElapsed: 0,
       userName: '',
       userIdNumber: '',
-      taskCategory: '',
+      taskCategory: 'Uncategorized',
       taskList: [],
     }
 
@@ -113,38 +113,62 @@ class TimerComponent extends Component {
       return <TaskListItemComponent key={task.start} startTime={task.start} stopTime={task.stop} userName={task.userName} userIdNumber={task.userIdNumber} taskCategory={task.taskCategory}/>
     })
 
-    return (<ul>{taskListDisplay}</ul>)
+    return (
+            <table className="hover">
+              <thead>
+                <tr>
+                  <th width="200">User Name</th>
+                  <th width="200">User ID#</th>
+                  <th>Start Time</th>
+                  <th>End Time</th>
+                  <th>Category</th>
+                </tr>
+              </thead>
+              <tbody>
+                {taskListDisplay}
+              </tbody>
+            </table>
+           )
   }
 
   render() {
     return (
-      <div className="TimerComponentContainer">
-        <div class="input-group">
-          <span class="input-group-label">Name</span>
+      <div className="TimerComponentContainer grid-x grid-padding-x">
+
+        <div className="input-group cell small-12 medium-4">
+          <span className="input-group-label">User Name</span>
           <input className="input-group-field" type="text" value={this.state.userName} onChange={this.handleUserNameChange}/>
+        </div>
 
-          <span class="input-group-label">User ID#</span>
+        <div className="input-group cell small-12 medium-4">
+          <span className="input-group-label">User ID#</span>
           <input className="input-group-field" type="text" value={this.state.userIdNumber} onChange={this.handleUserIdNumberChange}/>
+        </div>
 
-          <span class="input-group-label">Category</span>
+        <div className="input-group cell small-12 medium-4">
+          <span className="input-group-label">Category</span>
           <select className="input-group-field" onChange={this.handleTaskCategoryChange}>
-            <option value="Unaccounted Time">Unaccounted</option>
+            <option value="Uncategorized">Uncategorized</option>
             <option value="Development">Development</option>
             <option value="Communication">Communication</option>
             <option value="Meeting">Meeting</option>
             <option value="Break">Break</option>
           </select>
         </div>
-        <h3>{`current date/time: ${this.state.currentDate}`}</h3>
-        <h1>{`task timer: ${this.getHours()}:${this.getMinutes()}:${this.getSeconds()}`}</h1>
-        <ButtonComponent buttonText="Start Working" onClick={this.handleStart}/>
-        <ButtonComponent buttonText="Stop Working" onClick={this.handleStop} />
-        <h3>{`start task date/time: ${this.state.startDate}`}</h3>
-        <h3>{`end task date/time: ${this.state.endDate}`}</h3>
-        {this.displayTaskList()}
-        {this.state.userName}
-        {this.state.userIdNumber}
-        {this.state.taskCategory}
+
+        <div className="cell small-12">
+          <ButtonComponent buttonText="Start Working" onClick={this.handleStart}/>
+          <ButtonComponent buttonText="Stop Working" onClick={this.handleStop} />
+        </div>
+
+        <div className="cell">
+          <h3>{`current date/time: ${this.state.currentDate}`}</h3>
+          <h1>{`task timer: ${this.getHours()}:${this.getMinutes()}:${this.getSeconds()}`}</h1>
+
+          <h3>{`start task date/time: ${this.state.startDate}`}</h3>
+          <h3>{`end task date/time: ${this.state.endDate}`}</h3>
+          {this.displayTaskList()}
+        </div>
       </div>
     );
   }
